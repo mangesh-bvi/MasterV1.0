@@ -52,7 +52,7 @@ namespace Easyrewardz_TicketSystem.Services
             {
                 conn = Db.Connection;
                 cmd.Connection = conn;
-
+                
                 #region DashBoard Data
                 MySqlCommand cmd1 = new MySqlCommand("SP_DashBoardList", conn);
                 cmd1.CommandType = CommandType.StoredProcedure;
@@ -207,8 +207,14 @@ namespace Easyrewardz_TicketSystem.Services
             List<OpenByPriorityModel> OpenPriorityTktList = new List<OpenByPriorityModel>();
             try
             {
-                conn = Db.Connection;
-                cmd.Connection = conn;
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn = Db.Connection;
+                }
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
 
                 #region DashBoardGraph Data
 
@@ -320,9 +326,16 @@ namespace Easyrewardz_TicketSystem.Services
                 //{
                 //    conn = Db.Connection;
                 //}
-                conn = Db.Connection;
-                cmd.Connection = conn;
-                conn.Open();
+
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn = Db.Connection;
+                }
+
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
                 /*Based on active tab stored procedure will call
                     1. SP_SearchTicketData_ByDate
                     2. SP_SearchTicketData_ByCustomerType

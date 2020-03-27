@@ -87,8 +87,16 @@ namespace Easyrewardz_TicketSystem.Services
 
             try
             {
-                conn = Db.Connection;
-                cmd.Connection = conn;
+
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn = Db.Connection;
+                }
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
                 MySqlCommand cmd1 = new MySqlCommand("SP_GetDepartmentList", conn);
                 cmd1.CommandType = CommandType.StoredProcedure;
                 cmd1.Parameters.AddWithValue("@Tenant_Id", TenantID);
@@ -290,8 +298,15 @@ namespace Easyrewardz_TicketSystem.Services
             {
                 MySqlCommand cmd = new MySqlCommand();
 
-                conn.Open();
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn = Db.Connection;
+                }
                 cmd.Connection = conn;
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
                 MySqlCommand cmd1 = new MySqlCommand("SP_getSMTPDetails", conn);
                 cmd1.CommandType = CommandType.StoredProcedure;
                 cmd1.Parameters.AddWithValue("@Tenant_ID", TenantID);
@@ -313,13 +328,7 @@ namespace Easyrewardz_TicketSystem.Services
             {
                 throw (ex);
             }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
+            
 
             return sMTPDetails;
         }

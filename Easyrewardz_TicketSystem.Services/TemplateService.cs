@@ -202,13 +202,7 @@ namespace Easyrewardz_TicketSystem.Services
                 string message = Convert.ToString(ex.InnerException);
                 throw ex;
             }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
+            
 
             return updateCount;
         }

@@ -361,8 +361,15 @@ namespace Easyrewardz_TicketSystem.Services
             Authenticate authenticate = new Authenticate();
             try
             {
-                conn = Db.Connection;
-                conn.Open();
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn = Db.Connection;
+                }
+                cmd.Connection = conn;
+                if (conn != null && conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
                 MySqlCommand cmd1 = new MySqlCommand("SP_ValidateUserLogin", conn);
                 cmd1.CommandType = CommandType.StoredProcedure;
                 cmd1.Parameters.AddWithValue("@Program_Code", Program_Code);
@@ -644,8 +651,14 @@ namespace Easyrewardz_TicketSystem.Services
 
                     Programcode = DecryptStringAES(Programcode);
                     Domainname = DecryptStringAES(Domainname);
-                    conn = Db.Connection;
-                    conn.Open();
+                    if (conn != null && conn.State == ConnectionState.Closed)
+                    {
+                        conn = Db.Connection;
+                    }
+                    if (conn != null && conn.State == ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
                     MySqlCommand cmd1 = new MySqlCommand("SP_validateProgramCode", conn);
                     cmd1.CommandType = CommandType.StoredProcedure;
                     cmd1.Parameters.AddWithValue("@Program_code", Programcode);

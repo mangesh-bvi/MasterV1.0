@@ -28,7 +28,7 @@ namespace Easyrewardz_TicketSystem.Services
             int success = 0;
             try
             {
-                conn = Db.Connection;
+                conn = Db.Connection;conn.Open();
                 MySqlCommand cmd = new MySqlCommand("SP_ErrorLog", conn);
                 cmd.Connection = conn;
                 cmd.Parameters.AddWithValue("@User_ID", errorLog.UserID);
@@ -47,13 +47,7 @@ namespace Easyrewardz_TicketSystem.Services
 
                 throw ex;
             }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
+           
            return success;
         }
     }
