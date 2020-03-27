@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="RepositoryService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="2.2.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Easyrewardz_TicketSystem.DBContext\Easyrewardz_TicketSystem.DBContext.csproj" />
+    <ProjectReference Include="..\Easyrewardz_TicketSystem.Interface\Easyrewardz_TicketSystem.Interface.csproj" />
+    <ProjectReference Include="..\Easyrewardz_TicketSystem.Model\Easyrewardz_TicketSystem.Model.csproj" />
+    <ProjectReference Include="..\Easyrewardz_TicketSystem.Web\Easyrewardz_TicketSystem.MySqlDBContext\Easyrewardz_TicketSystem.MySqlDBContext.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="2.2.0" />
+    <PackageReference Include="MySqlConnector" Version="0.62.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Easyrewardz_TicketSystem.Model\Easyrewardz_TicketSystem.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Easyrewardz_TicketSystem.MySqlDBContext">
+      <HintPath>..\Easyrewardz_TicketSystem.Web\Easyrewardz_TicketSystem.MySqlDBContext\bin\Debug\netstandard2.0\Easyrewardz_TicketSystem.MySqlDBContext.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
